@@ -1,0 +1,23 @@
+/*
+  @title No Title
+  @by Pradish
+  @details No Description
+*/
+
+let chords = chord("<F@2 D Am9>");
+$: s("triangle*4")
+  .decay(0.5)
+  .n(irand(12))
+  .scale("F lydian")
+  .room(1)
+  .roomsize(10)
+  .fast(2);
+$: s("bd sd [~ bd] sd,hh*8").hpf(
+  "<4000 2000 1000 500 0 0 0 0 0 0 0 0 4000 4000 4000 4000 0 0 0 0 0 0 0 0>"
+);
+$: sound("gm_epiano1:1")
+  .chord("<F@2 D Am9>")
+  .voicing()
+  .phaser(4)
+  .room(0.5)
+  .gain(3);
