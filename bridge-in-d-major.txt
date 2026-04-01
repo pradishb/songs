@@ -1,0 +1,13 @@
+/*
+  @title Bridge in D Major
+  @by Pradish
+  @details No Description
+*/
+
+setcps(0.85)
+
+let chords = chord("<- Bm7 G A>")
+
+$: s("gm_epiano1").set(chords).voicing().room(0.4).gain(0.7)
+$: n("[0 2] [4 2] [0 3] [2 5]").set(chords).mode("root:d2").voicing().s("gm_synth_bass_1").gain(0.75)
+$: s("triangle*4").note(irand(7)).scale("D major").decay(0.3).room(0.6).roomsize(8).gain(0.4)
