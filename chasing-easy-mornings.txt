@@ -12,14 +12,15 @@ const chords = "<G*8!4 D*8!4>"
 
 $drums: s("<[bd bd sd ~ bd bd sd sd]!3 [bd bd sd ~ bd bd sd [sd sd]]>, hh*8").gain(slider(0.7, 0, 1, 0.01)).lpf(slider(770, 0, 2000, 1))
 
+// [0 6 4 2 6 4 2 _]!2
+// [4 9 8 6 9 8 6 _]!2
 $arpeggios: n(`<
-  [6 4 2 0 6 4 2 0]!2
-  [0 6 4 2 6 4 2 _]!2
-  [9 8 6 4 9 8 6 4]!2
-  [4 9 8 6 9 8 6 _]!2
+  [6 4 2 0 6 4 2 0]!4
+  [9 8 6 4 9 8 6 4]!4
 >`).scale(scale).s("triangle*4").decay(0.5).room(1).roomsize(10).gain(slider(0.4, 0, 1, 0.01))
 
-$rhythm: anchor("<b3*8!4 f#4*8!4>").chord(chords).voicing().gain(0.6)
+$rhythm: mode("above*8").anchor("a2*8").chord(chords).voicing().gain(0.3)._pianoroll(
+)
 
 $lead: n(`
 ~!32
