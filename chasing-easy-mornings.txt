@@ -7,33 +7,32 @@
 // 136bpm 4, 4 time
 setcps(136/4/60)
 
-// drums
-$: s("bd bd sd ~ bd bd sd sd, hh*8").gain(slider(0.3, 0, 1, 0.01)).hpf(slider(100, 0, 2000, 1))
+const scale = "<G:major@4 D:major@4>"
+const chords = "<G*8!4 D*8!4>"
 
-// arpeggios
-$: note(`<
-  [f#4 d4 b3 g3 f#4 d4 b3 g3]!4
-  [f#4 e4 c#4 a3 f#4 e4 c#4 a3]!4
->`).s("triangle*4").decay(0.5).room(1).roomsize(10).gain(slider(0.4, 0, 1, 0.01))
+$drums: s("<[bd bd sd ~ bd bd sd sd]!3 [bd bd sd ~ bd bd sd [sd sd]]>, hh*8").gain(slider(0.7, 0, 1, 0.01)).lpf(slider(770, 0, 2000, 1))
 
-// chords, g major and d major
-$: note("<[g2,d3,g3,b3]*8!4 [d3,a3,f#4]*8!4>").gain(slider(0.5, 0, 1, 0.01))
+$arpeggios: n(`<
+  [6 4 2 0 6 4 2 0]!2
+  [0 6 4 2 6 4 2 _]!2
+  [9 8 6 4 9 8 6 4]!2
+  [4 9 8 6 9 8 6 _]!2
+>`).scale(scale).s("triangle*4").decay(0.5).room(1).roomsize(10).gain(slider(0.4, 0, 1, 0.01))
 
-// intro guitar
-$: note(`<
-~ ~ ~ ~
-d3*8!3
-[d3 d3 d3 d3 d3 d3 d3 a2]
->`.mask("<1!8 0!64>")).sound("gm_electric_guitar_clean").gain(slider(0.70, 0, 1, 0.01)).room(1)
+$rhythm: anchor("<b3*8!4 f#4*8!4>").chord(chords).voicing().gain(0.6)
 
-// main guitar
-$: note(`[
-f#3 _ _ _ f#3 e3 _ a3
-_ _ _ _ g3 f#3 d3 d3
-_ _ _ _ _ f#3 d3 d3
-_ _ _ _ f#3 e3 _ _
-f#3 _ _ _ f#3 f#3 _ _
-f#3 _ _ _ f#3 f#3 _ _
-f#3 _ _ _ f#3 f#3 _ _
-f#3 _ _ _ f#3 f#3 _ a2
-]/8`.mask("<0!8 1!64>")).sound("gm_electric_guitar_clean").gain(slider(0.70, 0, 1, 0.01)).room(1)
+$lead: n(`
+~!32
+4 4 4 4 4 4 4 4
+4 4 4 4 4 4 4 4
+4 4 4 4 4 4 4 4
+4 4 4 4 4 4 4 1
+6 _ _ _ 6 5 _ 8
+_ _ _ _ 7 6 4 4
+_ _ _ _ _ 6 4 4
+_ _ _ _ 6 5 _ _
+6 _ _ _ 6 _ _ _
+6 _ _ _ 6 _ _ _
+6 _ _ _ 6 _ _ _
+6 _ _ _ 6 _ _ 1
+`).scale("G:major").transpose(-12).gain(slider(0.5, 0, 1, 0.01)).room(1).slow(16)
