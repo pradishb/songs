@@ -1,0 +1,41 @@
+// Circle of Fifths — all piano, one chord per bar
+setcps(1)
+
+// ---- Section 1: C MAJOR ----
+// I – IV – vii° – iii – vi – ii – V – I
+// Roots: C  F  B°  Em  Am  Dm  G  C
+let cMajor = stack(
+  note("<c2 f2 b2 e2 a2 d2 g2 c3>").s("piano"),
+  note("<[c3,e3,g3] [f3,a3,c4] [b3,d4,f4] [e3,g3,b3] [a3,c4,e4] [d3,f3,a3] [g3,b3,d4] [c4,e4,g4]>").s("piano")
+).room(0.4)
+
+// ---- Section 2: A MINOR ----
+// i – iv – VII – III – VI – ii° – V – i
+// Roots: Am  Dm  G  C  F  B°  E  Am   (V = E major w/ G#, harmonic minor)
+let aMinor = stack(
+  note("<a2 d2 g2 c2 f2 b2 e2 a2>").s("piano"),
+  note("<[a3,c4,e4] [d3,f3,a3] [g3,b3,d4] [c3,e3,g3] [f3,a3,c4] [b3,d4,f4] [e3,g#3,b3] [a3,c4,e4]>").s("piano")
+).room(0.5)
+
+// ---- Section 3: G MAJOR ----
+// I – IV – vii° – iii – vi – ii – V – I
+// Roots: G  C  F#°  Bm  Em  Am  D  G
+let gMajor = stack(
+  note("<g2 c2 f#2 b2 e2 a2 d2 g2>").s("piano"),
+  note("<[g3,b3,d4] [c4,e4,g4] [f#3,a3,c4] [b3,d4,f#4] [e3,g3,b3] [a3,c4,e4] [d3,f#3,a3] [g3,b3,d4]>").s("piano")
+).room(0.4)
+
+// ---- Section 4: D MINOR ----
+// i – iv – VII – III – VI – ii° – V – i
+// Roots: Dm  Gm  C  F  Bb  E°  A  Dm   (V = A major w/ C#)
+let dMinor = stack(
+  note("<d2 g2 c2 f2 bb2 e2 a2 d2>").s("piano"),
+  note("<[d3,f3,a3] [g3,bb3,d4] [c3,e3,g3] [f3,a3,c4] [bb3,d4,f4] [e3,g3,bb3] [a3,c#4,e4] [d3,f3,a3]>").s("piano")
+).room(0.5)
+
+arrange(
+  [8, cMajor],
+  [8, aMinor],
+  [8, gMajor],
+  [8, dMinor]
+)
