@@ -1,0 +1,24 @@
+// G Major — Circle of 5ths WITH INVERSIONS
+// G/B  C   F#°/A  Bm   Em/G  Am   D/F#  G
+// I/3  IV  vii°/3 iii  vi/3  ii   V/3   I
+//
+// Inversions create a stepwise bass line:
+//   B → C → A → B → G → A → F# → G
+// (instead of leaping by fifths — much smoother voice leading!)
+
+setcps(0.5)
+
+let bass = note("<b2 c3 a2 b2 g2 a2 f#2 g2>").s("piano")
+
+let chords = note(`<
+  [b3 d4 g4 d4 b3 d4 g4 d4]
+  [c4 e4 g4 e4 c4 e4 g4 e4]
+  [a3 c4 f#4 c4 a3 c4 f#4 c4]
+  [b3 d4 f#4 d4 b3 d4 f#4 d4]
+  [g3 b3 e4 b3 g3 b3 e4 b3]
+  [a3 c4 e4 c4 a3 c4 e4 c4]
+  [f#3 a3 d4 a3 f#3 a3 d4 a3]
+  [g3 b3 d4 b3 g3 b3 d4 b3]
+>`).s("piano")
+
+stack(bass, chords).room(0.4)
