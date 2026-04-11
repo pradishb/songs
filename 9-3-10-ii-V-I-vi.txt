@@ -1,0 +1,51 @@
+// Slow Jazz in F Major
+// ii7 – V7 – IMaj7 – vi7  (classic jazz turnaround)
+// Gm7 – C7 – FMaj7 – Dm7
+//
+// Each 7th chord shares 2 notes with the next — that's why
+// it sounds so smooth. The ii-V-I is the heart of jazz harmony:
+// ii7 builds tension, V7 intensifies it, IMaj7 resolves.
+// The added vi7 turns the phrase back to ii for another loop.
+
+setcps(0.32) // slow, around 77 bpm
+
+// ---- Brushed jazz kit ----
+let drums = stack(
+  s("bd ~ ~ ~ bd ~ ~ ~").gain(0.6),       // kick on 1 & 3
+  s("~ ~ rim ~ ~ ~ rim ~").gain(0.55),    // rim on 2 & 4
+  s("hh*8").gain(0.3)                      // steady ride-like hats
+)
+
+// ---- Walking bass ----
+// Each bar walks from chord root up through passing tones
+let bass = note(`<
+  [g2 a2 bb2 d3]
+  [c2 d2 e2 g2]
+  [f2 g2 a2 c3]
+  [d2 e2 f2 a2]
+>`).s("gm_acoustic_bass").gain(0.8)
+
+// ---- Rootless jazz voicings (3rd, 5th, b7/7, 9) ----
+// Played on electric piano on beats 2 and 4 — "comping"
+let chords = note(`<
+  [bb3,d4,f4,a4]
+  [bb3,e4,g4,d5]
+  [a3,e4,g4,c5]
+  [a3,d4,f4,c5]
+>`)
+  .struct("~ x ~ x")
+  .s("gm_epiano1")
+  .gain(0.6).room(0.5)
+
+// ---- Melody: lyrical line using chord tones ----
+let melody = note(`<
+  [~ f4 bb4 d5 ~ f5 d5 bb4]
+  [~ e4 g4 bb4 ~ d5 bb4 g4]
+  [~ a4 c5 e5 ~ g5 e5 c5]
+  [~ f4 a4 c5 ~ e5 c5 a4]
+>`).s("piano").gain(0.65).room(0.5)
+
+arrange(
+  [4, stack(drums, bass, chords)],            // comping in
+  [8, stack(drums, bass, chords, melody)],    // full band
+)
