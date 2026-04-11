@@ -1,0 +1,46 @@
+// Upbeat song in F# Major
+// Progression: I – vi – ii – V  (the "50s / doo-wop" changes)
+// F#  –  D#m  –  G#m  –  C#
+//
+// Note: in F# major the 3rd of C# would be E#, which is
+// enharmonically F — so I write C#'s 3rd as "f" in code.
+
+setcps(0.55)
+
+// ---- Drums: four-on-the-floor with offbeat claps ----
+let drums = stack(
+  s("bd*4").gain(0.95),
+  s("~ cp ~ cp").gain(0.7),
+  s("hh*8").gain(0.45)
+)
+
+// ---- Bass: root notes bouncing on offbeats ----
+let bass = note("<f#2 d#2 g#2 c#2>")
+  .struct("x ~ x x ~ x ~ x")
+  .s("sawtooth")
+  .lpf(900).lpq(4)
+  .gain(0.75)
+
+// ---- Chord stabs on the offbeats (that classic upbeat feel) ----
+let chords = note("<[f#4,a#4,c#5] [d#4,f#4,a#4] [g#4,b4,d#5] [c#4,f4,g#4]>")
+  .struct("~ x ~ x ~ x ~ x")
+  .s("piano")
+  .gain(0.55).room(0.4)
+
+// ---- Melody: arpeggiates each chord ----
+let melody = note(`<
+  [f#5 a#5 c#6 a#5 f#5 c#6 a#5 f#5]
+  [d#5 f#5 a#5 f#5 d#5 a#5 f#5 d#5]
+  [g#5 b5 d#6 b5 g#5 d#6 b5 g#5]
+  [c#5 f5 g#5 f5 c#5 g#5 f5 c#5]
+>`)
+  .s("piano")
+  .gain(0.65).room(0.3)
+
+// ---- Song structure ----
+arrange(
+  [4, stack(drums, bass)],              // intro: groove
+  [4, stack(drums, bass, chords)],      // add chords
+  [8, stack(drums, bass, chords, melody)], // full band
+  [4, stack(drums, bass, chords)]       // outro
+)
