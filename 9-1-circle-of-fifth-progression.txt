@@ -35,7 +35,10 @@ let dMinor = stack(
 
 arrange(
   [8, cMajor],
+  [2, silence],
   [8, aMinor],
+  [2, silence],
   [8, gMajor],
+  [2, silence],
   [8, dMinor]
 )
